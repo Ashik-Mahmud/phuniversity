@@ -1,7 +1,47 @@
+import { AcademicSemesterRegistrationItem } from "@/types/academic.types";
+import { TResponseRedux } from "@/types/global.types";
 import { BaseApi } from "../../api/BaseApi";
 
 const courseManagementApi = BaseApi.injectEndpoints({
     endpoints: (builder) => ({
+
+
+        createSemesterRegistration: builder.mutation({
+            query: (body) => ({
+                url: `/semester-registrations/create-semester-registration`,
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: ['semesterRegistration']
+        }),
+
+        updateSemesterRegistrationStatus: builder.mutation({
+            query: (args) => ({
+                url: `/semester-registrations/${args.id}`,
+                method: 'PATCH',
+                body: args.body,
+            }),
+            invalidatesTags: ['semesterRegistration']
+        }),
+
+
+        getAllSemesterRegistration: builder.query({
+            query: (params) => ({
+                url: "/semester-registrations",
+                method: 'GET',
+                params
+            }),
+            transformResponse: (response: TResponseRedux<AcademicSemesterRegistrationItem[]>) => {
+                return {
+                    data: response.data,
+                    meta: response.meta
+                }
+            },
+            providesTags: ['semesterRegistration']
+        }),
+
+
+
         createCourse: builder.mutation({
             query: (body) => ({
                 url: `/courses/create-course`,
@@ -71,4 +111,4 @@ const courseManagementApi = BaseApi.injectEndpoints({
 })
 
 
-export const { useCreateCourseMutation } = courseManagementApi;
+export const { useCreateCourseMutation, useAssignFacultyMutation, useCreateSemesterRegistrationMutation, useDeleteCourseMutation, useGetAllCoursesQuery, useGetAllSemesterRegistrationQuery, useGetCourseFacultiesQuery, useGetSingleCourseQuery, useUpdateSemesterRegistrationStatusMutation } = courseManagementApi;

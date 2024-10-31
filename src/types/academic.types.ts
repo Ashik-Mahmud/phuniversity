@@ -24,3 +24,16 @@ export interface AcademicDepartmentItem {
     updatedAt: string;
     _id: string;
 }
+
+export interface AcademicSemesterRegistrationItem {
+    _id: string
+    academicSemester: AcademicSemesterItem
+    status: string
+    startDate: string
+    endDate: string
+    minCredit: number
+    maxCredit: number
+    createdAt: string
+    updatedAt: string
+}
+
