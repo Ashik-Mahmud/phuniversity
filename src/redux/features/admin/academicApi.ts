@@ -77,11 +77,22 @@ const AcademicApi = BaseApi.injectEndpoints({
         })),
 
         getAllAcademicFaculties: builder.query({
-            query: (params) => ({
-                url: `/academic-faculties`,
-                method: 'GET',
-                params
-            }),
+            query: (query) => {
+
+                let params = new URLSearchParams();
+
+                if (query.length) {
+                    query.forEach((qItem: { name: string, value: any }) => {
+                        if (qItem.value) params.set(qItem.name, qItem.value);
+                    })
+                }
+
+                return ({
+                    url: `/academic-faculties`,
+                    method: 'GET',
+                    params
+                })
+            },
             transformResponse(response: TResponseRedux<AcademicFacultyItem[]>) {
                 return {
                     data: response.data,

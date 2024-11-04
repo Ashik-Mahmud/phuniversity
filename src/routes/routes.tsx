@@ -74,6 +74,11 @@ const router = createBrowserRouter([
 
     children: getDashboardPaths(STUDENT_SIDEBAR_ROUTES) as TReactRouterItem[],
   },
+
+  {
+    path: "*",
+    element: <div>No route found</div>,
+  },
 ]);
 
 export default router;

@@ -1,5 +1,5 @@
 import { jwtDecode, JwtPayload } from "jwt-decode";
-const getDecodeToken = async (token: string) => {
+const getDecodeToken = (token: string) => {
 
     const decoded = jwtDecode<JwtPayload>(token);
 

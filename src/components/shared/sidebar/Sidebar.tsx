@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 // react icons
 import { BsThreeDotsVertical } from "react-icons/bs";
 
+import useGetUserByToken from "@/hooks/useGetUserByToken";
 import { IoIosCode } from "react-icons/io";
 import { USER_ROLE } from "../../../constant/role";
-import { useAppSelector } from "../../../redux/hooks";
-import { useCurrentUser } from "../../../redux/store";
 import { ADMIN_SIDEBAR_ROUTES } from "../../../routes/admin.routes";
 import { FACULTY_SIDEBAR_ROUTES } from "../../../routes/faculty.routes";
 import { STUDENT_SIDEBAR_ROUTES } from "../../../routes/student.routes";
@@ -21,27 +20,29 @@ const ResponsiveSidebar = () => {
   const [isCollapse, setIsCollapse] = useState(true);
   const [routes, setRoutes] = useState(SIDEBAR_ROUTES);
 
-  const user = useAppSelector(useCurrentUser);
+  const userByToken = useGetUserByToken();
 
   useEffect(() => {
-    switch (user?.role) {
-      case USER_ROLE.superAdmin:
-        setRoutes(SUPER_ADMIN_SIDEBAR_ROUTES);
-        break;
-      case USER_ROLE.admin:
-        setRoutes(ADMIN_SIDEBAR_ROUTES);
-        break;
-      case USER_ROLE.faculty:
-        setRoutes(FACULTY_SIDEBAR_ROUTES);
-        break;
-      case USER_ROLE.student:
-        setRoutes(STUDENT_SIDEBAR_ROUTES);
-        break;
+    if (userByToken) {
+      switch (userByToken?.role) {
+        case USER_ROLE.superAdmin:
+          setRoutes(SUPER_ADMIN_SIDEBAR_ROUTES);
+          break;
+        case USER_ROLE.admin:
+          setRoutes(ADMIN_SIDEBAR_ROUTES);
+          break;
+        case USER_ROLE.faculty:
+          setRoutes(FACULTY_SIDEBAR_ROUTES);
+          break;
+        case USER_ROLE.student:
+          setRoutes(STUDENT_SIDEBAR_ROUTES);
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
     }
-  }, [user]);
+  }, [userByToken]);
 
   useEffect(() => {
     if (window.scrollX < 600) {
