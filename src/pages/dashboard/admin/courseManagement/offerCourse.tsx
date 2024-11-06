@@ -3,9 +3,7 @@ import { ICourseItem } from "@/types/courses.types";
 import { LoadingOverlay, Table, Title } from "@mantine/core";
 import { BsTrash2 } from "react-icons/bs";
 
-type Props = {};
-
-const OfferCourses = (props: Props) => {
+const OfferCourses = () => {
   const { data, isLoading } = useGetAllCoursesQuery({});
 
   const rows = data?.data?.map((element: ICourseItem) => (
