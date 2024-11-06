@@ -5,10 +5,10 @@ type Props = {};
 
 const DashboardLayout = (_props: Props) => {
   return (
-    <div className="grid grid-cols-12 ">
+    <div className="flex min-h-screen bg-gray-50">
       <ResponsiveSidebar />
 
-      <div className="dashboard-content col-span-10  h-dvh">
+      <div className="dashboard-content  flex-1 flex flex-col w-full p-4 sm:p-10">
         <Outlet />
       </div>
     </div>

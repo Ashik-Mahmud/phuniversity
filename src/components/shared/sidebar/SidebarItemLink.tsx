@@ -37,7 +37,7 @@ const SidebarItemLink = ({ isCollapse, route }: Props) => {
       {/* tooltip */}
       <div
         className={cn(
-          "absolute top-0 right-[-108px] translate-x-[20px] opacity-0 z-[-1] group-hover:translate-x-0 group-hover:opacity-100 group-hover:z-[1] transition-all duration-500",
+          "absolute top-0 right-[-108px] pointer-events-none group-hover:pointer-events-auto translate-x-[20px] opacity-0 z-[-1] group-hover:translate-x-0 group-hover:opacity-100 group-hover:z-[1] transition-all duration-500",
           isCollapse ? "hidden" : "inline"
         )}
       >

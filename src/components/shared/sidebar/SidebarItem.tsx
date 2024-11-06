@@ -8,12 +8,7 @@ type Props = {
 
 const SidebarItem = ({ isCollapse, item }: Props) => {
   return (
-    <div
-      className={cn(
-        "transition-all duration-300 ease-in-out mt-6",
-        isCollapse ? "px-[20px]" : "px-[10px]"
-      )}
-    >
+    <div className={cn("transition-all duration-300 ease-in-out mt-6")}>
       <p
         className={cn(
           "text-[0.9rem] text-gray-500 truncate",

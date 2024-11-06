@@ -58,7 +58,7 @@ const CreateCourse = (props: Props) => {
   }));
 
   return (
-    <div className="p-10 max-w-5xl mx-auto font-poppins">
+    <div className="p-10 max-w-5xl w-full mx-auto font-poppins">
       <h2 className="text-2xl font-semibold mb-10">Create Course</h2>
       <form onSubmit={onSubmitForm} className="space-y-5">
         <TextInput

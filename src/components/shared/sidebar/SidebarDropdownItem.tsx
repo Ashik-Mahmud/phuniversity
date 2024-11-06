@@ -15,7 +15,7 @@ const SidebarDropdownItem = ({ isCollapse, route }: Props) => {
     <div>
       <div
         className={cn(
-          "flex w-full hover:bg-gray-50 p-[5px] rounded-md cursor-pointer transition-all duration-200 relative group flex-col",
+          "flex w-full hover:bg-gray-50 p-[5px] rounded-md cursor-pointer transition-all duration-200 relative group flex-col  ",
           isCollapse && "justify-center ",
           isDropdownOpen && "bg-gray-50"
         )}
@@ -24,7 +24,8 @@ const SidebarDropdownItem = ({ isCollapse, route }: Props) => {
         <div
           className={cn(
             "flex items-center gap-[8px  w-full",
-            isCollapse ? " justify-between" : "justify-center"
+            isCollapse ? " justify-between" : "justify-center",
+            ""
           )}
         >
           <div className="flex items-center gap-[8px]">
@@ -32,7 +33,7 @@ const SidebarDropdownItem = ({ isCollapse, route }: Props) => {
             <p
               className={`${
                 isCollapse ? "inline" : "hidden"
-              } text-[1rem] font-[400] text-gray-500 truncate`}
+              } text-[1rem] font-[400] text-gray-500 truncate `}
             >
               {route?.name}
             </p>
@@ -50,7 +51,7 @@ const SidebarDropdownItem = ({ isCollapse, route }: Props) => {
         {!isCollapse && (
           <>
             {/* hover projects dropdown */}
-            <ul className="translate-y-[20px] opacity-0 z-[-1] group-hover:translate-y-0 group-hover:opacity-100 group-hover:z-30 absolute top-0 left-[70px] bg-white shadow min-w-32 transition-all duration-300 p-[8px] rounded-md flex flex-col gap-[3px] text-[1rem] text-gray-500">
+            <ul className="translate-y-[20px] opacity-0 z-[-1] group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto  group-hover:opacity-100 group-hover:z-[500] absolute top-0 left-[55px] bg-white shadow min-w-32 transition-all duration-300 p-[8px] rounded-md  flex-col gap-[3px] text-[1rem] text-gray-500 ">
               {route?.children?.map(
                 (childRoute: TChildrenRouteItem, index: number) => (
                   <li key={childRoute.name + index}>
