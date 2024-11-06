@@ -47,7 +47,8 @@ const courseManagementApi = BaseApi.injectEndpoints({
                 url: `/courses/create-course`,
                 method: 'POST',
                 body,
-            })
+            }),
+            invalidatesTags: ["allCourses"]
         }),
 
         getAllCourses: builder.query({
@@ -55,7 +56,8 @@ const courseManagementApi = BaseApi.injectEndpoints({
                 url: `/courses`,
                 method: 'GET',
                 params,
-            })
+            }),
+            providesTags: ['allCourses']
         }),
 
         getSingleCourse: builder.query({
