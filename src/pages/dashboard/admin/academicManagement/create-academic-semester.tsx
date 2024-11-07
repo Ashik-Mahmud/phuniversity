@@ -1,4 +1,3 @@
-type Props = {};
 import { useCreateAcademicSemesterMutation } from "@/redux/features/admin/academicApi";
 import { Button, Group, Select, TextInput } from "@mantine/core";
 import { MonthPickerInput } from "@mantine/dates";

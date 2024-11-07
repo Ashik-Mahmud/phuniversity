@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 type Props = {};
 
-const CreateCourse = (props: Props) => {
+const CreateCourse = (_props: Props) => {
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -92,7 +92,7 @@ const CreateCourse = (props: Props) => {
 
         <MultiSelect
           label="Prerequisite Courses"
-          placeholder="Pick semester status"
+          placeholder="Pick courses"
           data={coursesOptions || []}
           defaultValue=""
           clearable

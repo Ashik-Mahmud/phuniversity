@@ -19,6 +19,9 @@ const usersApi = BaseApi.injectEndpoints({
             })
         }),
 
+
+
+
         createAdmin: builders.mutation({
             query: (body) => ({
                 url: "/users/create-admin/",

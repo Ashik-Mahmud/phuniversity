@@ -53,7 +53,7 @@ const ResponsiveSidebar = () => {
 
   return (
     <aside
-      className={`bg-white shadow  sm:overflow-visible rounded-md transition-all  duration-300 ease sticky  box-border  top-0   flex flex-col justify-between ${
+      className={`bg-white shadow  z-30 sm:overflow-visible rounded-md transition-all  duration-300 ease sticky  box-border  top-0   flex flex-col justify-between ${
         isCollapse ? "w-72" : "w-20"
       }`}
     >

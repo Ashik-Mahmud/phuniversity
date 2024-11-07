@@ -26,11 +26,19 @@ const courseManagementApi = BaseApi.injectEndpoints({
 
 
         getAllSemesterRegistration: builder.query({
-            query: (params) => ({
-                url: "/semester-registrations",
-                method: 'GET',
-                params
-            }),
+            query: (query) => {
+                let params = new URLSearchParams();
+                if (query.length) {
+                    query.forEach((qItem: { name: string, value: any }) => {
+                        if (qItem.value) params.set(qItem.name, qItem.value);
+                    })
+                }
+                return ({
+                    url: "/semester-registrations",
+                    method: 'GET',
+                    params
+                })
+            },
             transformResponse: (response: TResponseRedux<AcademicSemesterRegistrationItem[]>) => {
                 return {
                     data: response.data,
@@ -109,8 +117,17 @@ const courseManagementApi = BaseApi.injectEndpoints({
 
             })
         }),
+
+        getAllFaculty: builder.query({
+            query: () => ({
+                url: "/faculties",
+                method: "GET",
+
+            }),
+            providesTags: ['getAllFaculties']
+        }),
     })
 })
 
 
-export const { useCreateCourseMutation, useAssignFacultyMutation, useCreateSemesterRegistrationMutation, useDeleteCourseMutation, useGetAllCoursesQuery, useGetAllSemesterRegistrationQuery, useGetCourseFacultiesQuery, useGetSingleCourseQuery, useUpdateSemesterRegistrationStatusMutation } = courseManagementApi;
+export const { useCreateCourseMutation, useAssignFacultyMutation, useCreateSemesterRegistrationMutation, useDeleteCourseMutation, useGetAllCoursesQuery, useGetAllSemesterRegistrationQuery, useGetCourseFacultiesQuery, useGetSingleCourseQuery, useUpdateSemesterRegistrationStatusMutation, useGetAllFacultyQuery } = courseManagementApi;

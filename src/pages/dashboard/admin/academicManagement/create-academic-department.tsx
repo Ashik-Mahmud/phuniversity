@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 type Props = {};
 
-const CreateAcademicDepartment = (props: Props) => {
+const CreateAcademicDepartment = (_props: Props) => {
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
