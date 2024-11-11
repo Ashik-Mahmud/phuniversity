@@ -95,7 +95,7 @@ const courseManagementApi = BaseApi.injectEndpoints({
 
         assignFaculty: builder.mutation({
             query: (data) => ({
-                url: `/courses/${data.id}/assign-faculties`,
+                url: `/courses/${data.courseId}/assign-faculties`,
                 method: 'PUT',
                 body: data.body
             })
@@ -122,12 +122,30 @@ const courseManagementApi = BaseApi.injectEndpoints({
             query: () => ({
                 url: "/faculties",
                 method: "GET",
-
             }),
             providesTags: ['getAllFaculties']
         }),
+
+
+        createOfferedCourse: builder.mutation({
+            query: (body) => ({
+                url: `/offered-courses/create-offered-course`,
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: ['GetAllOfferedCourses', 'getMyOfferedCourses']
+        }),
+        getAllOfferedCourses: builder.query({
+            query: () => ({
+                url: `/offered-courses`,
+                method: 'GET'
+            }),
+            providesTags: ['GetAllOfferedCourses']
+        }),
+
+
     })
 })
 
 
-export const { useCreateCourseMutation, useAssignFacultyMutation, useCreateSemesterRegistrationMutation, useDeleteCourseMutation, useGetAllCoursesQuery, useGetAllSemesterRegistrationQuery, useGetCourseFacultiesQuery, useGetSingleCourseQuery, useUpdateSemesterRegistrationStatusMutation, useGetAllFacultyQuery } = courseManagementApi;
+export const { useCreateCourseMutation, useAssignFacultyMutation, useCreateSemesterRegistrationMutation, useDeleteCourseMutation, useGetAllCoursesQuery, useGetAllSemesterRegistrationQuery, useGetCourseFacultiesQuery, useGetSingleCourseQuery, useUpdateSemesterRegistrationStatusMutation, useGetAllFacultyQuery, useCreateOfferedCourseMutation, useGetAllOfferedCoursesQuery, } = courseManagementApi;

@@ -53,7 +53,7 @@ const CreateCourse = (_props: Props) => {
   });
 
   const coursesOptions = courses?.data?.map((item: ICourseItem) => ({
-    label: item?.title + "-" + item?.prefix,
+    label: item?.title,
     value: item?._id,
   }));
 

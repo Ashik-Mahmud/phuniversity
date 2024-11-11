@@ -2,6 +2,7 @@ import { useGetAllCoursesQuery } from "@/redux/features/admin/courseManagementAp
 import { ICourseItem } from "@/types/courses.types";
 import { LoadingOverlay, Table, Title } from "@mantine/core";
 import { BsTrash2 } from "react-icons/bs";
+import AssignFaculty from "./assignFaculty";
 
 const OfferCourses = () => {
   const { data, isLoading } = useGetAllCoursesQuery({});
@@ -13,7 +14,10 @@ const OfferCourses = () => {
       <Table.Td>{element.credits}</Table.Td>
       <Table.Td>{element.prefix}</Table.Td>
       <Table.Td>
-        <BsTrash2 />
+        <div className="flex items-center gap-3">
+          <AssignFaculty courseId={element?._id} />
+          <BsTrash2 />
+        </div>
       </Table.Td>
     </Table.Tr>
   ));

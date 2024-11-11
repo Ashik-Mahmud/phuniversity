@@ -3,6 +3,7 @@ import {
   useGetAllAcademicFacultiesQuery,
 } from "@/redux/features/admin/academicApi";
 import {
+  useCreateOfferedCourseMutation,
   useGetAllCoursesQuery,
   useGetAllFacultyQuery,
   useGetAllSemesterRegistrationQuery,
@@ -65,6 +66,8 @@ const CreateOfferedCourse = (_props: Props) => {
 
   const { data: courses, isLoading: courseLoading } = useGetAllCoursesQuery({});
 
+  const [createOfferedCourse, { isLoading }] = useCreateOfferedCourseMutation();
+
   /* on Submit form */
   const onSubmitForm = form.onSubmit(async (values) => {
     try {
@@ -74,11 +77,11 @@ const CreateOfferedCourse = (_props: Props) => {
         section: +values?.section,
       };
 
-      console.log(sendingData);
-      //   if (result?.success) {
-      //     toast.success(result?.message);
-      //     form.reset();
-      //   }
+      const result = await createOfferedCourse(sendingData).unwrap();
+      if (result?.success) {
+        toast.success(result?.message);
+        form.reset();
+      }
     } catch (error: any) {
       toast.error(error?.data?.message);
     }
@@ -251,7 +254,9 @@ const CreateOfferedCourse = (_props: Props) => {
         />
 
         <Group justify="flex-end" mt="md">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={isLoading} loading={isLoading}>
+            Submit
+          </Button>
         </Group>
       </form>
     </div>
